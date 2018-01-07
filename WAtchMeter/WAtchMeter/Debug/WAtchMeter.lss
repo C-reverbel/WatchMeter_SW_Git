@@ -1,0 +1,786 @@
+
+WAtchMeter.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000004e0  00000000  00000000  00010000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .relocate     00000008  20000000  000004e0  00020000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .lpram        00000000  30000000  30000000  00020008  2**0
+                  CONTENTS
+  3 .bss          0000001c  20000008  000004e8  00020008  2**2
+                  ALLOC
+  4 .stack        00001004  20000024  00000504  00020008  2**0
+                  ALLOC
+  5 .ARM.attributes 00000028  00000000  00000000  00020008  2**0
+                  CONTENTS, READONLY
+  6 .comment      00000059  00000000  00000000  00020030  2**0
+                  CONTENTS, READONLY
+  7 .debug_info   00002b2a  00000000  00000000  00020089  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000766  00000000  00000000  00022bb3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000444  00000000  00000000  00023319  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_aranges 00000108  00000000  00000000  0002375d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000c8  00000000  00000000  00023865  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_macro  00017bb9  00000000  00000000  0002392d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_line   000027b6  00000000  00000000  0003b4e6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_str    00094f97  00000000  00000000  0003dc9c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 15 .debug_frame  000002f0  00000000  00000000  000d2c34  2**2
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <exception_table>:
+   0:	28 10 00 20 c5 03 00 00 59 04 00 00 59 04 00 00     (.. ....Y...Y...
+	...
+  2c:	59 04 00 00 00 00 00 00 00 00 00 00 59 04 00 00     Y...........Y...
+  3c:	59 04 00 00 59 04 00 00 59 04 00 00 59 04 00 00     Y...Y...Y...Y...
+  4c:	59 04 00 00 59 04 00 00 59 04 00 00 59 04 00 00     Y...Y...Y...Y...
+  5c:	59 04 00 00 59 04 00 00 59 04 00 00 59 04 00 00     Y...Y...Y...Y...
+  6c:	59 04 00 00 59 04 00 00 59 04 00 00 59 04 00 00     Y...Y...Y...Y...
+  7c:	59 04 00 00 59 04 00 00 59 04 00 00 59 04 00 00     Y...Y...Y...Y...
+  8c:	59 04 00 00 59 04 00 00 59 04 00 00 59 04 00 00     Y...Y...Y...Y...
+  9c:	59 04 00 00 59 04 00 00 59 04 00 00 59 04 00 00     Y...Y...Y...Y...
+  ac:	59 04 00 00 00 00 00 00                             Y.......
+
+000000b4 <__do_global_dtors_aux>:
+  b4:	b510      	push	{r4, lr}
+  b6:	4c06      	ldr	r4, [pc, #24]	; (d0 <__do_global_dtors_aux+0x1c>)
+  b8:	7823      	ldrb	r3, [r4, #0]
+  ba:	2b00      	cmp	r3, #0
+  bc:	d107      	bne.n	ce <__do_global_dtors_aux+0x1a>
+  be:	4b05      	ldr	r3, [pc, #20]	; (d4 <__do_global_dtors_aux+0x20>)
+  c0:	2b00      	cmp	r3, #0
+  c2:	d002      	beq.n	ca <__do_global_dtors_aux+0x16>
+  c4:	4804      	ldr	r0, [pc, #16]	; (d8 <__do_global_dtors_aux+0x24>)
+  c6:	e000      	b.n	ca <__do_global_dtors_aux+0x16>
+  c8:	bf00      	nop
+  ca:	2301      	movs	r3, #1
+  cc:	7023      	strb	r3, [r4, #0]
+  ce:	bd10      	pop	{r4, pc}
+  d0:	20000008 	.word	0x20000008
+  d4:	00000000 	.word	0x00000000
+  d8:	000004e0 	.word	0x000004e0
+
+000000dc <frame_dummy>:
+  dc:	4b08      	ldr	r3, [pc, #32]	; (100 <frame_dummy+0x24>)
+  de:	b510      	push	{r4, lr}
+  e0:	2b00      	cmp	r3, #0
+  e2:	d003      	beq.n	ec <frame_dummy+0x10>
+  e4:	4907      	ldr	r1, [pc, #28]	; (104 <frame_dummy+0x28>)
+  e6:	4808      	ldr	r0, [pc, #32]	; (108 <frame_dummy+0x2c>)
+  e8:	e000      	b.n	ec <frame_dummy+0x10>
+  ea:	bf00      	nop
+  ec:	4807      	ldr	r0, [pc, #28]	; (10c <frame_dummy+0x30>)
+  ee:	6803      	ldr	r3, [r0, #0]
+  f0:	2b00      	cmp	r3, #0
+  f2:	d100      	bne.n	f6 <frame_dummy+0x1a>
+  f4:	bd10      	pop	{r4, pc}
+  f6:	4b06      	ldr	r3, [pc, #24]	; (110 <frame_dummy+0x34>)
+  f8:	2b00      	cmp	r3, #0
+  fa:	d0fb      	beq.n	f4 <frame_dummy+0x18>
+  fc:	4798      	blx	r3
+  fe:	e7f9      	b.n	f4 <frame_dummy+0x18>
+ 100:	00000000 	.word	0x00000000
+ 104:	2000000c 	.word	0x2000000c
+ 108:	000004e0 	.word	0x000004e0
+ 10c:	000004e0 	.word	0x000004e0
+ 110:	00000000 	.word	0x00000000
+
+00000114 <arch_ioport_pin_to_port_id>:
+typedef uint32_t ioport_pin_t;
+typedef uint32_t ioport_port_t;
+typedef uint32_t ioport_port_mask_t;
+
+inline static ioport_port_t arch_ioport_pin_to_port_id(ioport_pin_t pin)
+{
+ 114:	b580      	push	{r7, lr}
+ 116:	b082      	sub	sp, #8
+ 118:	af00      	add	r7, sp, #0
+ 11a:	6078      	str	r0, [r7, #4]
+	return pin >> 5;
+ 11c:	687b      	ldr	r3, [r7, #4]
+ 11e:	095b      	lsrs	r3, r3, #5
+}
+ 120:	0018      	movs	r0, r3
+ 122:	46bd      	mov	sp, r7
+ 124:	b002      	add	sp, #8
+ 126:	bd80      	pop	{r7, pc}
+
+00000128 <arch_ioport_port_to_base>:
+
+inline static PortGroup *arch_ioport_port_to_base(
+		ioport_port_t port)
+{
+ 128:	b580      	push	{r7, lr}
+ 12a:	b082      	sub	sp, #8
+ 12c:	af00      	add	r7, sp, #0
+ 12e:	6078      	str	r0, [r7, #4]
+	return &PORT->Group[port];
+ 130:	687b      	ldr	r3, [r7, #4]
+ 132:	01db      	lsls	r3, r3, #7
+ 134:	4a03      	ldr	r2, [pc, #12]	; (144 <arch_ioport_port_to_base+0x1c>)
+ 136:	4694      	mov	ip, r2
+ 138:	4463      	add	r3, ip
+}
+ 13a:	0018      	movs	r0, r3
+ 13c:	46bd      	mov	sp, r7
+ 13e:	b002      	add	sp, #8
+ 140:	bd80      	pop	{r7, pc}
+ 142:	46c0      	nop			; (mov r8, r8)
+ 144:	40002800 	.word	0x40002800
+
+00000148 <arch_ioport_pin_to_base>:
+
+inline static PortGroup *arch_ioport_pin_to_base(ioport_pin_t pin)
+{
+ 148:	b580      	push	{r7, lr}
+ 14a:	b082      	sub	sp, #8
+ 14c:	af00      	add	r7, sp, #0
+ 14e:	6078      	str	r0, [r7, #4]
+	return arch_ioport_port_to_base(arch_ioport_pin_to_port_id(pin));
+ 150:	687b      	ldr	r3, [r7, #4]
+ 152:	0018      	movs	r0, r3
+ 154:	4b05      	ldr	r3, [pc, #20]	; (16c <arch_ioport_pin_to_base+0x24>)
+ 156:	4798      	blx	r3
+ 158:	0003      	movs	r3, r0
+ 15a:	0018      	movs	r0, r3
+ 15c:	4b04      	ldr	r3, [pc, #16]	; (170 <arch_ioport_pin_to_base+0x28>)
+ 15e:	4798      	blx	r3
+ 160:	0003      	movs	r3, r0
+}
+ 162:	0018      	movs	r0, r3
+ 164:	46bd      	mov	sp, r7
+ 166:	b002      	add	sp, #8
+ 168:	bd80      	pop	{r7, pc}
+ 16a:	46c0      	nop			; (mov r8, r8)
+ 16c:	00000115 	.word	0x00000115
+ 170:	00000129 	.word	0x00000129
+
+00000174 <arch_ioport_pin_to_mask>:
+
+inline static ioport_port_mask_t arch_ioport_pin_to_mask(ioport_pin_t pin)
+{
+ 174:	b580      	push	{r7, lr}
+ 176:	b082      	sub	sp, #8
+ 178:	af00      	add	r7, sp, #0
+ 17a:	6078      	str	r0, [r7, #4]
+	return 1U << (pin & 0x1F);
+ 17c:	687b      	ldr	r3, [r7, #4]
+ 17e:	221f      	movs	r2, #31
+ 180:	4013      	ands	r3, r2
+ 182:	2201      	movs	r2, #1
+ 184:	409a      	lsls	r2, r3
+ 186:	0013      	movs	r3, r2
+}
+ 188:	0018      	movs	r0, r3
+ 18a:	46bd      	mov	sp, r7
+ 18c:	b002      	add	sp, #8
+ 18e:	bd80      	pop	{r7, pc}
+
+00000190 <arch_ioport_init>:
+
+inline static void arch_ioport_init(void)
+{
+ 190:	b580      	push	{r7, lr}
+ 192:	af00      	add	r7, sp, #0
+	/* No implementation for SAM0 */
+}
+ 194:	46c0      	nop			; (mov r8, r8)
+ 196:	46bd      	mov	sp, r7
+ 198:	bd80      	pop	{r7, pc}
+	...
+
+0000019c <arch_ioport_set_pin_dir>:
+	}
+}
+
+inline static void arch_ioport_set_pin_dir(ioport_pin_t pin,
+		enum ioport_direction dir)
+{
+ 19c:	b580      	push	{r7, lr}
+ 19e:	b084      	sub	sp, #16
+ 1a0:	af00      	add	r7, sp, #0
+ 1a2:	6078      	str	r0, [r7, #4]
+ 1a4:	000a      	movs	r2, r1
+ 1a6:	1cfb      	adds	r3, r7, #3
+ 1a8:	701a      	strb	r2, [r3, #0]
+	PortGroup *base = arch_ioport_pin_to_base(pin);
+ 1aa:	687b      	ldr	r3, [r7, #4]
+ 1ac:	0018      	movs	r0, r3
+ 1ae:	4b18      	ldr	r3, [pc, #96]	; (210 <arch_ioport_set_pin_dir+0x74>)
+ 1b0:	4798      	blx	r3
+ 1b2:	0003      	movs	r3, r0
+ 1b4:	60fb      	str	r3, [r7, #12]
+
+	if (dir == IOPORT_DIR_OUTPUT) {
+ 1b6:	1cfb      	adds	r3, r7, #3
+ 1b8:	781b      	ldrb	r3, [r3, #0]
+ 1ba:	2b01      	cmp	r3, #1
+ 1bc:	d107      	bne.n	1ce <arch_ioport_set_pin_dir+0x32>
+		base->DIRSET.reg = arch_ioport_pin_to_mask(pin);
+ 1be:	687b      	ldr	r3, [r7, #4]
+ 1c0:	0018      	movs	r0, r3
+ 1c2:	4b14      	ldr	r3, [pc, #80]	; (214 <arch_ioport_set_pin_dir+0x78>)
+ 1c4:	4798      	blx	r3
+ 1c6:	0002      	movs	r2, r0
+ 1c8:	68fb      	ldr	r3, [r7, #12]
+ 1ca:	609a      	str	r2, [r3, #8]
+ 1cc:	e00a      	b.n	1e4 <arch_ioport_set_pin_dir+0x48>
+	} else if (dir == IOPORT_DIR_INPUT) {
+ 1ce:	1cfb      	adds	r3, r7, #3
+ 1d0:	781b      	ldrb	r3, [r3, #0]
+ 1d2:	2b00      	cmp	r3, #0
+ 1d4:	d106      	bne.n	1e4 <arch_ioport_set_pin_dir+0x48>
+		base->DIRCLR.reg = arch_ioport_pin_to_mask(pin);
+ 1d6:	687b      	ldr	r3, [r7, #4]
+ 1d8:	0018      	movs	r0, r3
+ 1da:	4b0e      	ldr	r3, [pc, #56]	; (214 <arch_ioport_set_pin_dir+0x78>)
+ 1dc:	4798      	blx	r3
+ 1de:	0002      	movs	r2, r0
+ 1e0:	68fb      	ldr	r3, [r7, #12]
+ 1e2:	605a      	str	r2, [r3, #4]
+	}
+
+	base->PINCFG[pin].reg |= PORT_PINCFG_INEN;
+ 1e4:	68fa      	ldr	r2, [r7, #12]
+ 1e6:	2140      	movs	r1, #64	; 0x40
+ 1e8:	687b      	ldr	r3, [r7, #4]
+ 1ea:	18d3      	adds	r3, r2, r3
+ 1ec:	185b      	adds	r3, r3, r1
+ 1ee:	781b      	ldrb	r3, [r3, #0]
+ 1f0:	b2db      	uxtb	r3, r3
+ 1f2:	2202      	movs	r2, #2
+ 1f4:	4313      	orrs	r3, r2
+ 1f6:	b2d8      	uxtb	r0, r3
+ 1f8:	68fa      	ldr	r2, [r7, #12]
+ 1fa:	2140      	movs	r1, #64	; 0x40
+ 1fc:	687b      	ldr	r3, [r7, #4]
+ 1fe:	18d3      	adds	r3, r2, r3
+ 200:	185b      	adds	r3, r3, r1
+ 202:	1c02      	adds	r2, r0, #0
+ 204:	701a      	strb	r2, [r3, #0]
+}
+ 206:	46c0      	nop			; (mov r8, r8)
+ 208:	46bd      	mov	sp, r7
+ 20a:	b004      	add	sp, #16
+ 20c:	bd80      	pop	{r7, pc}
+ 20e:	46c0      	nop			; (mov r8, r8)
+ 210:	00000149 	.word	0x00000149
+ 214:	00000175 	.word	0x00000175
+
+00000218 <arch_ioport_set_pin_level>:
+
+inline static void arch_ioport_set_pin_level(ioport_pin_t pin,
+		bool level)
+{
+ 218:	b590      	push	{r4, r7, lr}
+ 21a:	b083      	sub	sp, #12
+ 21c:	af00      	add	r7, sp, #0
+ 21e:	6078      	str	r0, [r7, #4]
+ 220:	000a      	movs	r2, r1
+ 222:	1cfb      	adds	r3, r7, #3
+ 224:	701a      	strb	r2, [r3, #0]
+	if (level) {
+ 226:	1cfb      	adds	r3, r7, #3
+ 228:	781b      	ldrb	r3, [r3, #0]
+ 22a:	2b00      	cmp	r3, #0
+ 22c:	d00b      	beq.n	246 <arch_ioport_set_pin_level+0x2e>
+		arch_ioport_pin_to_base(pin)->OUTSET.reg = arch_ioport_pin_to_mask(pin);
+ 22e:	687b      	ldr	r3, [r7, #4]
+ 230:	0018      	movs	r0, r3
+ 232:	4b0c      	ldr	r3, [pc, #48]	; (264 <arch_ioport_set_pin_level+0x4c>)
+ 234:	4798      	blx	r3
+ 236:	0004      	movs	r4, r0
+ 238:	687b      	ldr	r3, [r7, #4]
+ 23a:	0018      	movs	r0, r3
+ 23c:	4b0a      	ldr	r3, [pc, #40]	; (268 <arch_ioport_set_pin_level+0x50>)
+ 23e:	4798      	blx	r3
+ 240:	0003      	movs	r3, r0
+ 242:	61a3      	str	r3, [r4, #24]
+	} else {
+		arch_ioport_pin_to_base(pin)->OUTCLR.reg = arch_ioport_pin_to_mask(pin);
+	}
+}
+ 244:	e00a      	b.n	25c <arch_ioport_set_pin_level+0x44>
+		arch_ioport_pin_to_base(pin)->OUTCLR.reg = arch_ioport_pin_to_mask(pin);
+ 246:	687b      	ldr	r3, [r7, #4]
+ 248:	0018      	movs	r0, r3
+ 24a:	4b06      	ldr	r3, [pc, #24]	; (264 <arch_ioport_set_pin_level+0x4c>)
+ 24c:	4798      	blx	r3
+ 24e:	0004      	movs	r4, r0
+ 250:	687b      	ldr	r3, [r7, #4]
+ 252:	0018      	movs	r0, r3
+ 254:	4b04      	ldr	r3, [pc, #16]	; (268 <arch_ioport_set_pin_level+0x50>)
+ 256:	4798      	blx	r3
+ 258:	0003      	movs	r3, r0
+ 25a:	6163      	str	r3, [r4, #20]
+}
+ 25c:	46c0      	nop			; (mov r8, r8)
+ 25e:	46bd      	mov	sp, r7
+ 260:	b003      	add	sp, #12
+ 262:	bd90      	pop	{r4, r7, pc}
+ 264:	00000149 	.word	0x00000149
+ 268:	00000175 	.word	0x00000175
+
+0000026c <arch_ioport_toggle_pin_level>:
+{
+	return arch_ioport_port_to_base(port)->IN.reg & mask;
+}
+
+inline static void arch_ioport_toggle_pin_level(ioport_pin_t pin)
+{
+ 26c:	b590      	push	{r4, r7, lr}
+ 26e:	b083      	sub	sp, #12
+ 270:	af00      	add	r7, sp, #0
+ 272:	6078      	str	r0, [r7, #4]
+	arch_ioport_pin_to_base(pin)->OUTTGL.reg = arch_ioport_pin_to_mask(pin);
+ 274:	687b      	ldr	r3, [r7, #4]
+ 276:	0018      	movs	r0, r3
+ 278:	4b06      	ldr	r3, [pc, #24]	; (294 <arch_ioport_toggle_pin_level+0x28>)
+ 27a:	4798      	blx	r3
+ 27c:	0004      	movs	r4, r0
+ 27e:	687b      	ldr	r3, [r7, #4]
+ 280:	0018      	movs	r0, r3
+ 282:	4b05      	ldr	r3, [pc, #20]	; (298 <arch_ioport_toggle_pin_level+0x2c>)
+ 284:	4798      	blx	r3
+ 286:	0003      	movs	r3, r0
+ 288:	61e3      	str	r3, [r4, #28]
+}
+ 28a:	46c0      	nop			; (mov r8, r8)
+ 28c:	46bd      	mov	sp, r7
+ 28e:	b003      	add	sp, #12
+ 290:	bd90      	pop	{r4, r7, pc}
+ 292:	46c0      	nop			; (mov r8, r8)
+ 294:	00000149 	.word	0x00000149
+ 298:	00000175 	.word	0x00000175
+
+0000029c <ioport_init>:
+ *
+ * This function must be called before using any other functions in the IOPORT
+ * service.
+ */
+static inline void ioport_init(void)
+{
+ 29c:	b580      	push	{r7, lr}
+ 29e:	af00      	add	r7, sp, #0
+	arch_ioport_init();
+ 2a0:	4b02      	ldr	r3, [pc, #8]	; (2ac <ioport_init+0x10>)
+ 2a2:	4798      	blx	r3
+}
+ 2a4:	46c0      	nop			; (mov r8, r8)
+ 2a6:	46bd      	mov	sp, r7
+ 2a8:	bd80      	pop	{r7, pc}
+ 2aa:	46c0      	nop			; (mov r8, r8)
+ 2ac:	00000191 	.word	0x00000191
+
+000002b0 <ioport_set_pin_dir>:
+ * \param pin IOPORT pin to configure
+ * \param dir Direction to set for the specified pin (\ref ioport_direction)
+ */
+static inline void ioport_set_pin_dir(ioport_pin_t pin,
+		enum ioport_direction dir)
+{
+ 2b0:	b580      	push	{r7, lr}
+ 2b2:	b082      	sub	sp, #8
+ 2b4:	af00      	add	r7, sp, #0
+ 2b6:	6078      	str	r0, [r7, #4]
+ 2b8:	000a      	movs	r2, r1
+ 2ba:	1cfb      	adds	r3, r7, #3
+ 2bc:	701a      	strb	r2, [r3, #0]
+	arch_ioport_set_pin_dir(pin, dir);
+ 2be:	1cfb      	adds	r3, r7, #3
+ 2c0:	781a      	ldrb	r2, [r3, #0]
+ 2c2:	687b      	ldr	r3, [r7, #4]
+ 2c4:	0011      	movs	r1, r2
+ 2c6:	0018      	movs	r0, r3
+ 2c8:	4b02      	ldr	r3, [pc, #8]	; (2d4 <ioport_set_pin_dir+0x24>)
+ 2ca:	4798      	blx	r3
+}
+ 2cc:	46c0      	nop			; (mov r8, r8)
+ 2ce:	46bd      	mov	sp, r7
+ 2d0:	b002      	add	sp, #8
+ 2d2:	bd80      	pop	{r7, pc}
+ 2d4:	0000019d 	.word	0x0000019d
+
+000002d8 <ioport_set_pin_level>:
+ *
+ * \param pin IOPORT pin to configure
+ * \param level Logical value of the pin
+ */
+static inline void ioport_set_pin_level(ioport_pin_t pin, bool level)
+{
+ 2d8:	b580      	push	{r7, lr}
+ 2da:	b082      	sub	sp, #8
+ 2dc:	af00      	add	r7, sp, #0
+ 2de:	6078      	str	r0, [r7, #4]
+ 2e0:	000a      	movs	r2, r1
+ 2e2:	1cfb      	adds	r3, r7, #3
+ 2e4:	701a      	strb	r2, [r3, #0]
+	arch_ioport_set_pin_level(pin, level);
+ 2e6:	1cfb      	adds	r3, r7, #3
+ 2e8:	781a      	ldrb	r2, [r3, #0]
+ 2ea:	687b      	ldr	r3, [r7, #4]
+ 2ec:	0011      	movs	r1, r2
+ 2ee:	0018      	movs	r0, r3
+ 2f0:	4b02      	ldr	r3, [pc, #8]	; (2fc <ioport_set_pin_level+0x24>)
+ 2f2:	4798      	blx	r3
+}
+ 2f4:	46c0      	nop			; (mov r8, r8)
+ 2f6:	46bd      	mov	sp, r7
+ 2f8:	b002      	add	sp, #8
+ 2fa:	bd80      	pop	{r7, pc}
+ 2fc:	00000219 	.word	0x00000219
+
+00000300 <ioport_toggle_pin_level>:
+ * an output.
+ *
+ * \param pin IOPORT pin to toggle
+ */
+static inline void ioport_toggle_pin_level(ioport_pin_t pin)
+{
+ 300:	b580      	push	{r7, lr}
+ 302:	b082      	sub	sp, #8
+ 304:	af00      	add	r7, sp, #0
+ 306:	6078      	str	r0, [r7, #4]
+	arch_ioport_toggle_pin_level(pin);
+ 308:	687b      	ldr	r3, [r7, #4]
+ 30a:	0018      	movs	r0, r3
+ 30c:	4b02      	ldr	r3, [pc, #8]	; (318 <ioport_toggle_pin_level+0x18>)
+ 30e:	4798      	blx	r3
+}
+ 310:	46c0      	nop			; (mov r8, r8)
+ 312:	46bd      	mov	sp, r7
+ 314:	b002      	add	sp, #8
+ 316:	bd80      	pop	{r7, pc}
+ 318:	0000026d 	.word	0x0000026d
+
+0000031c <main>:
+
+#define RANGE_IN1 IOPORT_CREATE_PIN(IOPORT_PORTB, 10)
+
+
+int main(void)
+{
+ 31c:	b580      	push	{r7, lr}
+ 31e:	af00      	add	r7, sp, #0
+    /* Initialize the SAM system */
+    SystemInit();
+ 320:	4b09      	ldr	r3, [pc, #36]	; (348 <main+0x2c>)
+ 322:	4798      	blx	r3
+	
+	ioport_init();
+ 324:	4b09      	ldr	r3, [pc, #36]	; (34c <main+0x30>)
+ 326:	4798      	blx	r3
+	ioport_set_pin_dir(RANGE_IN1,IOPORT_DIR_OUTPUT);
+ 328:	2101      	movs	r1, #1
+ 32a:	202a      	movs	r0, #42	; 0x2a
+ 32c:	4b08      	ldr	r3, [pc, #32]	; (350 <main+0x34>)
+ 32e:	4798      	blx	r3
+	
+	ioport_set_pin_level(RANGE_IN1,0);
+ 330:	2100      	movs	r1, #0
+ 332:	202a      	movs	r0, #42	; 0x2a
+ 334:	4b07      	ldr	r3, [pc, #28]	; (354 <main+0x38>)
+ 336:	4798      	blx	r3
+    /* Replace with your application code */
+    while (1) 
+    {
+		delay_ms(10);
+ 338:	200a      	movs	r0, #10
+ 33a:	4b07      	ldr	r3, [pc, #28]	; (358 <main+0x3c>)
+ 33c:	4798      	blx	r3
+		ioport_toggle_pin_level(RANGE_IN1);
+ 33e:	202a      	movs	r0, #42	; 0x2a
+ 340:	4b06      	ldr	r3, [pc, #24]	; (35c <main+0x40>)
+ 342:	4798      	blx	r3
+		delay_ms(10);
+ 344:	e7f8      	b.n	338 <main+0x1c>
+ 346:	46c0      	nop			; (mov r8, r8)
+ 348:	00000461 	.word	0x00000461
+ 34c:	0000029d 	.word	0x0000029d
+ 350:	000002b1 	.word	0x000002b1
+ 354:	000002d9 	.word	0x000002d9
+ 358:	00000395 	.word	0x00000395
+ 35c:	00000301 	.word	0x00000301
+
+00000360 <delay_cycles>:
+ *
+ * \param n  Number of cycles to delay
+ */
+static inline void delay_cycles(
+		const uint32_t n)
+{
+ 360:	b580      	push	{r7, lr}
+ 362:	b082      	sub	sp, #8
+ 364:	af00      	add	r7, sp, #0
+ 366:	6078      	str	r0, [r7, #4]
+	if (n > 0) {
+ 368:	687b      	ldr	r3, [r7, #4]
+ 36a:	2b00      	cmp	r3, #0
+ 36c:	d00c      	beq.n	388 <delay_cycles+0x28>
+		SysTick->LOAD = n;
+ 36e:	4b08      	ldr	r3, [pc, #32]	; (390 <delay_cycles+0x30>)
+ 370:	687a      	ldr	r2, [r7, #4]
+ 372:	605a      	str	r2, [r3, #4]
+		SysTick->VAL = 0;
+ 374:	4b06      	ldr	r3, [pc, #24]	; (390 <delay_cycles+0x30>)
+ 376:	2200      	movs	r2, #0
+ 378:	609a      	str	r2, [r3, #8]
+
+		while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)) {
+ 37a:	46c0      	nop			; (mov r8, r8)
+ 37c:	4b04      	ldr	r3, [pc, #16]	; (390 <delay_cycles+0x30>)
+ 37e:	681a      	ldr	r2, [r3, #0]
+ 380:	2380      	movs	r3, #128	; 0x80
+ 382:	025b      	lsls	r3, r3, #9
+ 384:	4013      	ands	r3, r2
+ 386:	d0f9      	beq.n	37c <delay_cycles+0x1c>
+		};
+	}
+}
+ 388:	46c0      	nop			; (mov r8, r8)
+ 38a:	46bd      	mov	sp, r7
+ 38c:	b002      	add	sp, #8
+ 38e:	bd80      	pop	{r7, pc}
+ 390:	e000e010 	.word	0xe000e010
+
+00000394 <delay_cycles_ms>:
+ *
+ * \param n  Number of milliseconds to wait
+ */
+void delay_cycles_ms(
+		uint32_t n)
+{
+ 394:	b580      	push	{r7, lr}
+ 396:	b082      	sub	sp, #8
+ 398:	af00      	add	r7, sp, #0
+ 39a:	6078      	str	r0, [r7, #4]
+	while (n--) {
+ 39c:	e004      	b.n	3a8 <delay_cycles_ms+0x14>
+		/* Devide up to blocks of 1ms */
+		delay_cycles(cycles_per_ms);
+ 39e:	4b07      	ldr	r3, [pc, #28]	; (3bc <delay_cycles_ms+0x28>)
+ 3a0:	681b      	ldr	r3, [r3, #0]
+ 3a2:	0018      	movs	r0, r3
+ 3a4:	4b06      	ldr	r3, [pc, #24]	; (3c0 <delay_cycles_ms+0x2c>)
+ 3a6:	4798      	blx	r3
+	while (n--) {
+ 3a8:	687b      	ldr	r3, [r7, #4]
+ 3aa:	1e5a      	subs	r2, r3, #1
+ 3ac:	607a      	str	r2, [r7, #4]
+ 3ae:	2b00      	cmp	r3, #0
+ 3b0:	d1f5      	bne.n	39e <delay_cycles_ms+0xa>
+	}
+}
+ 3b2:	46c0      	nop			; (mov r8, r8)
+ 3b4:	46bd      	mov	sp, r7
+ 3b6:	b002      	add	sp, #8
+ 3b8:	bd80      	pop	{r7, pc}
+ 3ba:	46c0      	nop			; (mov r8, r8)
+ 3bc:	20000000 	.word	0x20000000
+ 3c0:	00000361 	.word	0x00000361
+
+000003c4 <Reset_Handler>:
+/**
+ * \brief This is the code that gets called on processor reset.
+ * To initialize the device, and call the main() routine.
+ */
+void Reset_Handler(void)
+{
+ 3c4:	b580      	push	{r7, lr}
+ 3c6:	b082      	sub	sp, #8
+ 3c8:	af00      	add	r7, sp, #0
+        uint32_t *pSrc, *pDest;
+
+        /* Initialize the relocate segment */
+        pSrc = &_etext;
+ 3ca:	4b19      	ldr	r3, [pc, #100]	; (430 <Reset_Handler+0x6c>)
+ 3cc:	607b      	str	r3, [r7, #4]
+        pDest = &_srelocate;
+ 3ce:	4b19      	ldr	r3, [pc, #100]	; (434 <Reset_Handler+0x70>)
+ 3d0:	603b      	str	r3, [r7, #0]
+
+        if (pSrc != pDest) {
+ 3d2:	687a      	ldr	r2, [r7, #4]
+ 3d4:	683b      	ldr	r3, [r7, #0]
+ 3d6:	429a      	cmp	r2, r3
+ 3d8:	d00c      	beq.n	3f4 <Reset_Handler+0x30>
+                for (; pDest < &_erelocate;) {
+ 3da:	e007      	b.n	3ec <Reset_Handler+0x28>
+                        *pDest++ = *pSrc++;
+ 3dc:	683b      	ldr	r3, [r7, #0]
+ 3de:	1d1a      	adds	r2, r3, #4
+ 3e0:	603a      	str	r2, [r7, #0]
+ 3e2:	687a      	ldr	r2, [r7, #4]
+ 3e4:	1d11      	adds	r1, r2, #4
+ 3e6:	6079      	str	r1, [r7, #4]
+ 3e8:	6812      	ldr	r2, [r2, #0]
+ 3ea:	601a      	str	r2, [r3, #0]
+                for (; pDest < &_erelocate;) {
+ 3ec:	683a      	ldr	r2, [r7, #0]
+ 3ee:	4b12      	ldr	r3, [pc, #72]	; (438 <Reset_Handler+0x74>)
+ 3f0:	429a      	cmp	r2, r3
+ 3f2:	d3f3      	bcc.n	3dc <Reset_Handler+0x18>
+                }
+        }
+
+        /* Clear the zero segment */
+        for (pDest = &_szero; pDest < &_ezero;) {
+ 3f4:	4b11      	ldr	r3, [pc, #68]	; (43c <Reset_Handler+0x78>)
+ 3f6:	603b      	str	r3, [r7, #0]
+ 3f8:	e004      	b.n	404 <Reset_Handler+0x40>
+                *pDest++ = 0;
+ 3fa:	683b      	ldr	r3, [r7, #0]
+ 3fc:	1d1a      	adds	r2, r3, #4
+ 3fe:	603a      	str	r2, [r7, #0]
+ 400:	2200      	movs	r2, #0
+ 402:	601a      	str	r2, [r3, #0]
+        for (pDest = &_szero; pDest < &_ezero;) {
+ 404:	683a      	ldr	r2, [r7, #0]
+ 406:	4b0e      	ldr	r3, [pc, #56]	; (440 <Reset_Handler+0x7c>)
+ 408:	429a      	cmp	r2, r3
+ 40a:	d3f6      	bcc.n	3fa <Reset_Handler+0x36>
+        }
+
+        /* Set the vector table base address */
+        pSrc = (uint32_t *) & _sfixed;
+ 40c:	4b0d      	ldr	r3, [pc, #52]	; (444 <Reset_Handler+0x80>)
+ 40e:	607b      	str	r3, [r7, #4]
+        SCB->VTOR = ((uint32_t) pSrc & SCB_VTOR_TBLOFF_Msk);
+ 410:	4b0d      	ldr	r3, [pc, #52]	; (448 <Reset_Handler+0x84>)
+ 412:	687a      	ldr	r2, [r7, #4]
+ 414:	21ff      	movs	r1, #255	; 0xff
+ 416:	438a      	bics	r2, r1
+ 418:	609a      	str	r2, [r3, #8]
+
+        /* Overwriting the default value of the NVMCTRL.CTRLB.MANW bit (errata reference 13134) */
+        NVMCTRL->CTRLB.bit.MANW = 1;
+ 41a:	4a0c      	ldr	r2, [pc, #48]	; (44c <Reset_Handler+0x88>)
+ 41c:	6853      	ldr	r3, [r2, #4]
+ 41e:	2180      	movs	r1, #128	; 0x80
+ 420:	430b      	orrs	r3, r1
+ 422:	6053      	str	r3, [r2, #4]
+
+        /* Initialize the C library */
+        __libc_init_array();
+ 424:	4b0a      	ldr	r3, [pc, #40]	; (450 <Reset_Handler+0x8c>)
+ 426:	4798      	blx	r3
+
+        /* Branch to main function */
+        main();
+ 428:	4b0a      	ldr	r3, [pc, #40]	; (454 <Reset_Handler+0x90>)
+ 42a:	4798      	blx	r3
+
+        /* Infinite loop */
+        while (1);
+ 42c:	e7fe      	b.n	42c <Reset_Handler+0x68>
+ 42e:	46c0      	nop			; (mov r8, r8)
+ 430:	000004e0 	.word	0x000004e0
+ 434:	20000000 	.word	0x20000000
+ 438:	20000008 	.word	0x20000008
+ 43c:	20000008 	.word	0x20000008
+ 440:	20000024 	.word	0x20000024
+ 444:	00000000 	.word	0x00000000
+ 448:	e000ed00 	.word	0xe000ed00
+ 44c:	41004000 	.word	0x41004000
+ 450:	00000479 	.word	0x00000479
+ 454:	0000031d 	.word	0x0000031d
+
+00000458 <Dummy_Handler>:
+
+/**
+ * \brief Default interrupt handler for unused IRQs.
+ */
+void Dummy_Handler(void)
+{
+ 458:	b580      	push	{r7, lr}
+ 45a:	af00      	add	r7, sp, #0
+        while (1) {
+ 45c:	e7fe      	b.n	45c <Dummy_Handler+0x4>
+	...
+
+00000460 <SystemInit>:
+ *
+ * @brief  Setup the microcontroller system.
+ *         Initialize the System and update the SystemCoreClock variable.
+ */
+void SystemInit(void)
+{
+ 460:	b580      	push	{r7, lr}
+ 462:	af00      	add	r7, sp, #0
+	// Keep the default device state after reset
+	SystemCoreClock = __SYSTEM_CLOCK;
+ 464:	4b02      	ldr	r3, [pc, #8]	; (470 <SystemInit+0x10>)
+ 466:	4a03      	ldr	r2, [pc, #12]	; (474 <SystemInit+0x14>)
+ 468:	601a      	str	r2, [r3, #0]
+	return;
+ 46a:	46c0      	nop			; (mov r8, r8)
+}
+ 46c:	46bd      	mov	sp, r7
+ 46e:	bd80      	pop	{r7, pc}
+ 470:	20000004 	.word	0x20000004
+ 474:	003d0900 	.word	0x003d0900
+
+00000478 <__libc_init_array>:
+ 478:	b570      	push	{r4, r5, r6, lr}
+ 47a:	2600      	movs	r6, #0
+ 47c:	4d0c      	ldr	r5, [pc, #48]	; (4b0 <__libc_init_array+0x38>)
+ 47e:	4c0d      	ldr	r4, [pc, #52]	; (4b4 <__libc_init_array+0x3c>)
+ 480:	1b64      	subs	r4, r4, r5
+ 482:	10a4      	asrs	r4, r4, #2
+ 484:	42a6      	cmp	r6, r4
+ 486:	d109      	bne.n	49c <__libc_init_array+0x24>
+ 488:	2600      	movs	r6, #0
+ 48a:	f000 f819 	bl	4c0 <_init>
+ 48e:	4d0a      	ldr	r5, [pc, #40]	; (4b8 <__libc_init_array+0x40>)
+ 490:	4c0a      	ldr	r4, [pc, #40]	; (4bc <__libc_init_array+0x44>)
+ 492:	1b64      	subs	r4, r4, r5
+ 494:	10a4      	asrs	r4, r4, #2
+ 496:	42a6      	cmp	r6, r4
+ 498:	d105      	bne.n	4a6 <__libc_init_array+0x2e>
+ 49a:	bd70      	pop	{r4, r5, r6, pc}
+ 49c:	00b3      	lsls	r3, r6, #2
+ 49e:	58eb      	ldr	r3, [r5, r3]
+ 4a0:	4798      	blx	r3
+ 4a2:	3601      	adds	r6, #1
+ 4a4:	e7ee      	b.n	484 <__libc_init_array+0xc>
+ 4a6:	00b3      	lsls	r3, r6, #2
+ 4a8:	58eb      	ldr	r3, [r5, r3]
+ 4aa:	4798      	blx	r3
+ 4ac:	3601      	adds	r6, #1
+ 4ae:	e7f2      	b.n	496 <__libc_init_array+0x1e>
+ 4b0:	000004cc 	.word	0x000004cc
+ 4b4:	000004cc 	.word	0x000004cc
+ 4b8:	000004cc 	.word	0x000004cc
+ 4bc:	000004d0 	.word	0x000004d0
+
+000004c0 <_init>:
+ 4c0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 4c2:	46c0      	nop			; (mov r8, r8)
+ 4c4:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 4c6:	bc08      	pop	{r3}
+ 4c8:	469e      	mov	lr, r3
+ 4ca:	4770      	bx	lr
+
+000004cc <__init_array_start>:
+ 4cc:	000000dd 	.word	0x000000dd
+
+000004d0 <_fini>:
+ 4d0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 4d2:	46c0      	nop			; (mov r8, r8)
+ 4d4:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 4d6:	bc08      	pop	{r3}
+ 4d8:	469e      	mov	lr, r3
+ 4da:	4770      	bx	lr
+
+000004dc <__fini_array_start>:
+ 4dc:	000000b5 	.word	0x000000b5
