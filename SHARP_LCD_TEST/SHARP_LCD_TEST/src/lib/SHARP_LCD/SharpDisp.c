@@ -8,6 +8,7 @@
 #include "SharpDisp.h"
 
 #define TOGGLE_VCOM vcom = (vcom ? VCOM_LO : VCOM_HI)
+#define SPI_HW 1
 
 #ifndef _swap_int16_t
 #define _swap_int16_t(a, b) { int16_t t = a; a = b; b = t; }
@@ -27,10 +28,11 @@ static const uint8_t clr[] = { (uint8_t)~1 , (uint8_t)~2 , (uint8_t)~4 , (uint8_
 
 
 // ===== private functions =====
-void sendbyte(uint8_t data){
-	uint8_t i = 0;
+void sendbyte(uint8_t data){ // LCD expects LSB first
+#if SPI_HW
 
-	// LCD expects LSB first
+#else
+	uint8_t i = 0;
 
 	for (i=0; i<8; i++) {
 		// Make sure clock starts low
@@ -48,12 +50,14 @@ void sendbyte(uint8_t data){
 	}
 	// Make sure clock ends low
 	ioport_set_pin_level(lcd._clk, 0);
+#endif
 }
-void sendbyteLSB(uint8_t data){
+void sendbyteLSB(uint8_t data){// LCD expects LSB first
+#if SPI_HW
+
+#else
 	uint8_t i = 0;
 
-	// LCD expects LSB first
-	
 	for (i=0; i<8; i++)
 	{
 		// Make sure clock starts low
@@ -71,6 +75,7 @@ void sendbyteLSB(uint8_t data){
 	}
 	// Make sure clock ends low
 	ioport_set_pin_level(lcd._clk, 0);
+#endif
 }
 
 

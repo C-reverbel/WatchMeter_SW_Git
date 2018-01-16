@@ -8,6 +8,16 @@ src\ASF\common2\boards\user_board\init.c
 
 src\ASF\common\utils\interrupt\interrupt_sam_nvic.c
 
+src\ASF\sam0\drivers\port\port.c
+
+src\ASF\sam0\drivers\sercom\sercom.c
+
+src\ASF\sam0\drivers\sercom\sercom_interrupt.c
+
+src\ASF\sam0\drivers\sercom\spi\spi.c
+
+src\ASF\sam0\drivers\sercom\spi\spi_interrupt.c
+
 src\ASF\sam0\drivers\system\clock\clock_saml21\clock.c
 
 src\ASF\sam0\drivers\system\clock\clock_saml21\gclk.c
